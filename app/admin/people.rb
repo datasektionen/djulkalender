@@ -1,3 +1,4 @@
+require_relative 'base'
 module App
   module Admin
     class People < Base
