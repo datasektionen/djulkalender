@@ -15,5 +15,16 @@ body {
 }
 
 .question-thumb:hover {
-  background-color: #ccffcc;
+  background-color: #b03d37;
+}
+
+.clear {
+	clear: both;
+}
+
+.question-number {
+	margin-top: 25px;
+	font-size: 72pt;
+	color: #ffe7e7;
+	font-weight: bold;
 }

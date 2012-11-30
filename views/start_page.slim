@@ -1,3 +1,5 @@
 div.centered
   - @questions.each do |question|
     == slim :"questions/thumb", locals: {question: question}
+
+div.clear style="margin-bottom: 10px"
