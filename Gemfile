@@ -4,6 +4,7 @@ gem 'rake'
 
 gem 'sinatra', require: "sinatra/base", require: false
 gem 'thin', require: false
+gem 'tzinfo', require: false
 
 gem 'warden', require: false
 gem 'omniauth-cas', require: false
