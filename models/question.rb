@@ -21,7 +21,7 @@ class Question < Sequel::Model
   end
 
   def published?
-    publish_date <= Date.today
+    publish_date <= today
   end
 
   def correctly_answered_by?(user)
