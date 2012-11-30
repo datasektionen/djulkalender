@@ -1,0 +1,4 @@
+form.form action="/admin/questions/#{@question.id}" method="post"
+  input type="hidden" name="_method" value="put"
+  == slim :"questions/_form", locals: {question: @question}
+  input type="submit" value="Spara"

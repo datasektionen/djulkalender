@@ -1,0 +1,17 @@
+h1 Luckor
+
+table.table.table-striped
+  thead
+    tr
+      th ID
+      th Titel
+      th
+  tbody
+    - @questions.each do |question|
+      tr
+        td= question.id
+        td
+          a href="/admin/questions/#{question.id}" = question.title
+        td
+          a.btn href="/question/#{question.id}/edit" Redigera
+

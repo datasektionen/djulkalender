@@ -1,0 +1,3 @@
+p.centered
+  - @questions.each do |question|
+    == slim :"questions/thumb", locals: {question: question}

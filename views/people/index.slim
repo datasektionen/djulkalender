@@ -1,0 +1,18 @@
+h1 Användare
+
+a.btn.btn-info href="/people/new" Lägg till person
+
+table.table.table-striped
+  thead
+    tr
+      th Id
+      th Namn
+      th
+  tbody
+    - @people.each do |person|
+      tr
+        td= person.id
+        td= person.name
+        td
+          a.btn href="/people/#{person.id}/edit" Redigera
+

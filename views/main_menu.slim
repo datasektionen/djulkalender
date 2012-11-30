@@ -1,0 +1,13 @@
+ul.nav
+  - if env['warden'].authenticated?
+    li.dropdown id="user"
+      a.dropdown-toggle data-toggle="dropdown" href="#"
+        = @current_user
+        b.caret
+      ul.dropdown-menu
+        li.logout
+          a data-method="delete" href="/auth/logout" Logga ut
+  - else
+    li
+      a href='/auth/cas' Logga in
+

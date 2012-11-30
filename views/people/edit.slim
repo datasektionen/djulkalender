@@ -1,0 +1,5 @@
+- puts @person.inspect
+form.form action="/people/#{@person.id}" method="post"
+  input type="hidden" name="_method" value="put"
+  == slim :"people/_form", locals: {person: @person}
+  input type="submit" value="Spara"

@@ -1,0 +1,15 @@
+body {
+ padding-top: 60px;
+ padding-bottom: 40px;
+}
+.sidebar-nav {
+ padding: 9px 0;
+}
+.centered {
+  text-align: center;
+}
+.question-thumb {
+  height: 100px;
+  width: 162px;
+  margin: 0.5em;
+}

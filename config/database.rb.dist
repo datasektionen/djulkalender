@@ -1,0 +1,10 @@
+require 'sequel'
+require "sequel/adapters/sqlite"
+
+case SINATRA_ENV
+when "development"
+  then DB = Sequel.connect("sqlite://#{File.dirname(__FILE__)}/../db/development.db")
+when "test"
+  then DB = Sequel.connect("sqlite://#{File.dirname(__FILE__)}/../db/test.db")
+end
+

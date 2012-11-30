@@ -1,0 +1,12 @@
+ul.nav
+  li.dropdown id="user"
+    a.dropdown-toggle data-toggle="dropdown" href="#"
+      = @current_user
+      b.caret
+    ul.dropdown-menu
+      li.logout
+        a data-method="delete" href="/auth/logout" Logga ut
+  li class="people"
+    a href="/admin/people" Användare
+  li class="questions"
+    a href="/admin/questions" Frågor
