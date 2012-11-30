@@ -11,7 +11,7 @@ class Person < Sequel::Model
   include LDAPLookup::Importable
   plugin :validation_helpers
 
-  one_to_many :incumbents
+  one_to_many :submissions
 
   def validate
     super
@@ -37,6 +37,13 @@ class Person < Sequel::Model
 
   def to_s
     name
+  end
+
+  def has_unlocked?(question)
+    previous_questions = Question.where("id < #{question.id}").map(&:id)
+    correct_answers = Submission.where(question_id: previous_questions).where(person_id: id).where(correct: true).map(&:question_id)
+
+    return correct_answers == previous_questions
   end
 end
 

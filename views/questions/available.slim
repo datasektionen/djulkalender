@@ -1,0 +1,8 @@
+h2 Fråga: #{@question.publish_date}
+p== @question.question_text
+
+div.form
+  form action="/answer/#{@question.id}" method="post"
+    label for="answer" Svara
+    input id="answer" type="text" name="answer"
+    input type="submit" value="Svara"
