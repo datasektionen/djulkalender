@@ -1,5 +1,4 @@
 a href="/#{question.id}"
-  div.well.question-thumb.pull-left
+  - qs = QuestionStatus.new(question, @current_user)
+  div.well.question-thumb.pull-left class="question-#{qs.status}" src="/img/#{qs.status}.png"
     h1.question-number= question.id
-    - qs = QuestionStatus.new(question, @current_user)
-    /* p.question-status.label class="#{qs.label_class}" = qs.status*/

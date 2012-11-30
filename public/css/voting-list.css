@@ -14,6 +14,23 @@ body {
   margin: 0.5em;
 }
 
+.question-done {
+	background: url("/img/done.png") no-repeat;
+	background-position: 90% 90%;
+}
+.question-available {
+	background: url("/img/available.png") no-repeat;
+	background-position: 90% 0%;
+}
+.question-unavailable {
+	background: url("/img/unavailable.png") no-repeat;
+	background-position: 90% 90%;
+}
+.question-locked {
+	background: url("/img/locked.png") no-repeat;
+	background-position: 90% 90%;
+}
+
 .question-thumb:hover {
   background-color: #b03d37;
 }
@@ -27,4 +44,10 @@ body {
 	font-size: 72pt;
 	color: #ffe7e7;
 	font-weight: bold;
+}
+
+.question-status {
+	position: relative;
+	left: 0px;
+	top: 0px;
 }
