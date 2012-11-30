@@ -18,4 +18,17 @@ class QuestionStatus
       "unavailable"
     end
   end
+
+  def label_class
+    case status
+    when "available"
+      "label-warning"
+    when "unavailable"
+      "label-inverse"
+    when "locked"
+      "label-info"
+    when "done"
+      "label-success"
+    end
+  end
 end

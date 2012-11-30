@@ -22,20 +22,11 @@ module App
 
     post "/answer/:id" do |id|
       @question = Question[id]
-      answer = Submission.new
+      result, answer = SubmissionCreator.new(@question, @current_user).create!(params)
 
-      answer.set_only({
-        person_id: @current_user.id,
-        question_id: @question.id,
-        answer: params["answer"]
-      }, :person_id, :question_id, :answer)
-
-      if answer.valid?
-        answer.save
+      if result
         redirect to("/")
       else
-        puts answer.inspect
-        puts answer.errors
         status = QuestionStatus.new(@question, @current_user).status
         slim :"questions/#{status}"
       end

@@ -1,4 +1,5 @@
 a href="/#{question.id}"
   div.well.question-thumb.pull-left
     p.question-number= question.id
-    p.question-status= QuestionStatus.new(question, @current_user).status
+    - qs = QuestionStatus.new(question, @current_user)
+    p.question-status.label class="#{qs.label_class}" = qs.status
