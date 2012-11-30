@@ -45,5 +45,9 @@ class Person < Sequel::Model
 
     return correct_answers == previous_questions
   end
+
+  def admin?
+    role == 'admin'
+  end
 end
 

@@ -21,7 +21,7 @@ use OmniAuth::Builder do
 end
 
 Warden::Manager.serialize_into_session {|user| user.id }
-Warden::Manager.serialize_from_session {|id| User[id] }
+Warden::Manager.serialize_from_session {|id| Person[id] }
 
 use Warden::Manager do |manager|
   manager.failure_app = App::Sessions

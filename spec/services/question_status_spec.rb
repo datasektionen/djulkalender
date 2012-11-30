@@ -3,7 +3,7 @@ require_relative '../unit_helper'
 def cleanup
   Submission.delete
   Question.delete
-  User.delete
+  Person.delete
 end
 
 describe "QuestionStatus" do
