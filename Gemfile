@@ -15,6 +15,8 @@ gem 'slim', require: false
 gem 'sequel'
 gem 'sqlite3'
 
+gem 'unicorn'
+
 group :test do
   gem 'test-unit'
   gem 'rack-test', require: "rack/test"
