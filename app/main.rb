@@ -24,12 +24,9 @@ module App
       @question = Question[id]
       result, answer = SubmissionCreator.new(@question, @current_user).create!(params)
 
-      if result
-        redirect to("/")
-      else
-        status = QuestionStatus.new(@question, @current_user).status
-        slim :"questions/#{status}"
-      end
+      status = QuestionStatus.new(@question, @current_user).status
+      error = result ? "" : "Fel svar!"
+      slim :"questions/#{status}", locals: { error: "Fel svar!" }
     end
   end
 end

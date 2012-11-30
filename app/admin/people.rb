@@ -34,16 +34,6 @@ module App
           slim :'people/edit'
         end
       end
-
-      delete "/:id" do |id|
-        person = Person[id]
-        if person != current_person && person.destroy
-          flash[:notice] = 'Person was successfully destroyed.'
-        else
-          flash[:error] = 'Unable to destroy Person!'
-        end
-        redirect url(:people, :index)
-      end
     end
   end
 end
