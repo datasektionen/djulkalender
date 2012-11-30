@@ -1,6 +1,5 @@
 module App
   class Main < Sinatra::Base
-    register Sinatra::Flash
     enable :logging
 
     set :root, File.dirname(__FILE__) + "/.."
