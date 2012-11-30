@@ -6,7 +6,6 @@
 
 require 'sinatra/flash'
 require 'slim'
-require 'clogger'
 require 'thin'
 require "warden"
 require 'omniauth-cas'
