@@ -4,7 +4,6 @@ DB.create_table? :people do
   String :first_name, null: false
   String :last_name, null: false
   String :role, null: false, default: ""
-  String :email, null: false, unique: true
 end
 
 class Person < Sequel::Model
@@ -15,7 +14,7 @@ class Person < Sequel::Model
 
   def validate
     super
-    validates_presence [:ugid, :first_name, :last_name, :email]
+    validates_presence [:ugid, :first_name, :last_name]
     validates_unique :ugid
     validates_format /^[A-Za-z]*$/, :role
   end

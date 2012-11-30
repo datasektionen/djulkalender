@@ -34,5 +34,5 @@ if [ ! -f config/ldap.yml ]; then
     cp config/ldap.yml.dist config/ldap.yml
 fi
 
-# Setup rake tasks
-echo "[+] Running setup rake tasks..."
+# setup db
+`which ruby` -r ./boot.rb -r ./db/seed.rb
