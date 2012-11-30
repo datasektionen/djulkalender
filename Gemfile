@@ -4,7 +4,6 @@ gem 'rake'
 
 gem 'sinatra', require: "sinatra/base", require: false
 gem 'sinatra-flash', require: false
-gem 'clogger', require: false
 gem 'thin', require: false
 
 gem 'warden', require: false
