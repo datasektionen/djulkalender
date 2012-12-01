@@ -1,3 +1,14 @@
+div.intro
+  h3 Välkommen till Konglig Datasektionens dJulkalendern 2012!
+  p
+    |
+      Bakom varje lucka i kalendern finns problem att lösa. 
+      De första luckorna är ganska simpla, men ju längre det går desto svårare blir det.
+      Du måste öppna luckorna i ordning, du kan bara försöka på en senare lucka när du öppnat alla innan den.
+      Får du problem, maila 
+    a href="mailto:djul@datasektionen.se" djul@datasektionen.se
+    | så kanske vi hjälper dig.
+
 div.centered
   - @questions.each do |question|
     == slim :"questions/thumb", locals: {question: question}
