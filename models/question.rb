@@ -1,3 +1,5 @@
+require 'tzinfo'
+
 DB.create_table? :questions do
   primary_key :id
   String :title, null: false
@@ -19,10 +21,14 @@ class Question < Sequel::Model
   end
 
   def published?
-    publish_date <= Date.today
+    publish_date <= today
   end
 
   def correctly_answered_by?(user)
     Submission.where(person_id: user.id).where(correct: true).where("question_id = #{id}").any?
+  end
+
+  def today
+    TZInfo::Timezone.get("Europe/Stockholm").now.to_date
   end
 end

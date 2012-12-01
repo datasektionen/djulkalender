@@ -4,7 +4,6 @@
 # This file can be used to start Padrino,
 # just execute it from the command line.
 
-require 'sinatra/flash'
 require 'slim'
 require 'thin'
 require "warden"

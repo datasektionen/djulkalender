@@ -20,4 +20,11 @@ class Submission < Sequel::Model
     validates_presence [:answer, :person_id, :question, :answered_at]
   end
 
+  def correct?
+    correct
+  end
+
+  def incorrect?
+    !correct
+  end
 end

@@ -22,10 +22,12 @@ module App
 
     post "/answer/:id" do |id|
       @question = Question[id]
-      result, answer = SubmissionCreator.new(@question, @current_user).create!(params)
+      success, answer = SubmissionCreator.new(@question, @current_user).create!(params)
 
       status = QuestionStatus.new(@question, @current_user).status
-      error = result ? "" : "Fel svar!"
+
+      @error = "Fel svar!" if !success || answer.incorrect?
+
       slim :"questions/#{status}", locals: { error: "Fel svar!" }
     end
   end
