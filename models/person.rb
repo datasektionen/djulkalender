@@ -11,6 +11,9 @@ class Person < Sequel::Model
   plugin :validation_helpers
 
   one_to_many :submissions
+  one_to_many :correct_submissions, :class => :Submission do |cs|
+    cs.where(correct: true)
+  end
 
   def validate
     super
@@ -47,6 +50,10 @@ class Person < Sequel::Model
 
   def admin?
     role == 'admin'
+  end
+
+  def self.progress
+    Person.left_outer_join(:submissions, :person_id => :id).where(:correct => true).group_and_count(:person_id).select_append(:first_name, :last_name).all
   end
 end
 

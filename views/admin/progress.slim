@@ -1,0 +1,17 @@
+h2　Översikt
+
+h3 Vem har öppnat hur många luckor?
+table.table.table-striped
+  thead
+    tr
+      th Namn
+      th Antal luckor
+  tbody
+    - @progress.each do |person|
+      tr
+        td= person.name
+        td= person[:count]
+
+p ...samt #{@people_without_correct_answers} person(er) utan korrekta svar
+
+

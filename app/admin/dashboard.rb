@@ -2,12 +2,15 @@ require_relative 'base'
 module App
   module Admin
     class Dashboard < Base
-      # list questions
       get "/" do
+        slim :'admin/dashboard', layout: :admin
       end
 
-      # show question
-      get "/:id" do |id|
+      get "/progress" do
+        @progress = Person.progress
+        @people_without_correct_answers = Person.count - @progress.count
+
+        slim :'admin/progress', layout: :admin
       end
     end
   end
