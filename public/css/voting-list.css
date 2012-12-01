@@ -57,3 +57,7 @@ body {
   max-width: 700px;
   font-size: 1.1em;
 }
+
+.legend {
+  float: right;
+}
