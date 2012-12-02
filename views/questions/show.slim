@@ -1,3 +1,20 @@
 h2= @question.title
 
 p== @question.question_text
+
+hr
+
+p== @question.done_text
+
+h3 Felaktiga svar
+
+table.table
+  thead
+    tr
+      th Svar
+      th Antal
+  tbody
+    - @question.incorrect_answers.each do |a|
+      tr
+        td= a.answer
+        td= a[:count]

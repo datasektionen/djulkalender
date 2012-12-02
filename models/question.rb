@@ -38,4 +38,10 @@ class Question < Sequel::Model
   def self.published
     where{ publish_date <= TZInfo::Timezone.get("Europe/Stockholm").now.to_date}
   end
+
+  def incorrect_answers
+    submissions_dataset.where(correct: false).
+      group_and_count(:answer).
+      order(:count).reverse
+  end
 end
