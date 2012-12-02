@@ -53,7 +53,11 @@ class Person < Sequel::Model
   end
 
   def self.progress
-    Person.left_outer_join(:submissions, :person_id => :id).where(:correct => true).group_and_count(:person_id).select_append(:first_name, :last_name).all
+    Person.left_outer_join(:submissions, :person_id => :id).
+      where(:correct => true).
+      group_and_count(:person_id).
+      select_append(:first_name, :last_name).
+      order('count,first_name,last_name desc').all
   end
 end
 

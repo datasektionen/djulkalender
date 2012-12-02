@@ -5,4 +5,17 @@ dl
   dd= Person.count
 
   dt Antal korrekta svar
-  dd= Submission.where(correct: true).count
+  dd
+    table.table
+      thead
+        tr
+          th Fråga
+          th Antal svar
+          th Korrekta svar
+      tbody
+        - Question.published.all.each do |question|
+          tr
+            td= question.title
+            td= question.submissions.count
+            td= question.correct_submissions.count
+

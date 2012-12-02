@@ -14,6 +14,9 @@ class Question < Sequel::Model
   plugin :validation_helpers
 
   one_to_many :submissions
+  one_to_many :correct_submissions, :class => :Submission do |cs|
+    cs.where(correct: true)
+  end
 
   def validate
     super
@@ -30,5 +33,9 @@ class Question < Sequel::Model
 
   def today
     TZInfo::Timezone.get("Europe/Stockholm").now.to_date
+  end
+
+  def self.published
+    where{ publish_date <= TZInfo::Timezone.get("Europe/Stockholm").now.to_date}
   end
 end
