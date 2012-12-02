@@ -19,3 +19,5 @@ p== @question.question_text
     .control-group
       .controls
         input type="submit" value="Svara"
+
+== slim :"questions/statistics", locals: {question: @question}

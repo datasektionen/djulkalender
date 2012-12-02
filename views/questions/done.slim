@@ -5,5 +5,7 @@ div.done-text
   p== @question.done_text
 
 hr
+== slim :"questions/statistics", locals: {question: @question}
 p
   a href="/" Klicka här för att komma tillbaka till luckorna
+
