@@ -1,5 +1,6 @@
-div.question-text
-  p== @question.question_text
+- unless defined?(hide_question_text) && hide_question_text
+  div.question-text
+    p== @question.question_text
 div.done-text
   p== @question.done_text
 

@@ -28,7 +28,7 @@ module App
 
       @error = "Fel svar!" if !success || answer.incorrect?
 
-      slim :"questions/#{status}", locals: { error: "Fel svar!" }
+      slim :"questions/#{status}", locals: { error: "Fel svar!", hide_question_text: true }
     end
   end
 end
