@@ -57,7 +57,7 @@ class Person < Sequel::Model
       where(:correct => true).
       group_and_count(:person_id).
       select_append(:first_name, :last_name).
-      order('count,first_name,last_name').reverse
+      order(:count).reverse
   end
 end
 
