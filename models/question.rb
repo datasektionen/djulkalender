@@ -14,8 +14,13 @@ class Question < Sequel::Model
   plugin :validation_helpers
 
   one_to_many :submissions
+
   one_to_many :correct_submissions, :class => :Submission do |cs|
     cs.where(correct: true)
+  end
+
+  one_to_many :incorrect_answers, :class => :Submission do |ia|
+    ia.where(correct: false).group_and_count(:answer).select_append(:id, :person_id).order(:count).reverse
   end
 
   def validate
@@ -39,9 +44,19 @@ class Question < Sequel::Model
     where{ publish_date <= TZInfo::Timezone.get("Europe/Stockholm").now.to_date}
   end
 
-  def incorrect_answers
-    submissions_dataset.where(correct: false).
-      group_and_count(:answer).
-      order(:count).reverse
+  def average_incorrect_submissions
+   (submissions_from_people_with_correct_submissions.count.to_f / people_with_correct_submissions.count.to_f).tap {|average|
+     return 0 if average.nan?
+   }
+  rescue ZeroDivisionError => e
+    0
+  end
+
+  def people_with_correct_submissions
+    Person.where(id: correct_submissions_dataset.map(&:person_id))
+  end
+
+  def submissions_from_people_with_correct_submissions
+    submissions_dataset.where(person_id: people_with_correct_submissions.map(&:id))
   end
 end

@@ -13,6 +13,7 @@ dl
           th Antal svar
           th Hur många har svarat?
           th Korrekta svar
+          th Antal svar / korrekt lösning (snitt)
       tbody
         - Question.published.all.each do |question|
           tr
@@ -20,4 +21,5 @@ dl
             td= question.submissions.count
             td= question.submissions_dataset.select(:person_id).distinct.count
             td= question.correct_submissions.count
+            td= question.average_incorrect_submissions
 
