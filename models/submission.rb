@@ -15,7 +15,7 @@ class Submission < Sequel::Model
 
   def validate
     super
-    self.correct = answer == question.answer
+    self.correct = answer.downcase == question.answer.downcase
     self.answered_at = Time.now
     validates_presence [:answer, :person_id, :question, :answered_at]
   end

@@ -10,7 +10,7 @@ describe Person do
     it.name.must_equal "#{it.first_name} #{it.last_name}"
   end
 
-  %w[ugid first_name last_name email].each do |attribute|
+  %w[ugid first_name last_name].each do |attribute|
     it "is invalid without #{attribute}" do
       it.valid?.must_equal false
       it.errors[attribute.to_sym].must_equal [ "is not present" ]
