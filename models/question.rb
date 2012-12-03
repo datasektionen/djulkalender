@@ -46,7 +46,7 @@ class Question < Sequel::Model
 
   def average_incorrect_submissions
    (submissions_from_people_with_correct_submissions.count.to_f / people_with_correct_submissions.count.to_f).tap {|average|
-     return 0 if average.nan?
+     return average.nan? ? 0 : "%0.2f" % average
    }
   rescue ZeroDivisionError => e
     0
