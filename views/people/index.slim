@@ -1,6 +1,6 @@
 h1 Användare
 
-a.btn.btn-info href="/people/new" Lägg till person
+a.btn.btn-info href="/admin/people/new" Lägg till person
 
 table.table.table-striped
   thead
@@ -14,5 +14,5 @@ table.table.table-striped
         td= person.id
         td= person.name
         td
-          a.btn href="/people/#{person.id}/edit" Redigera
+          a.btn href="/admin/people/#{person.id}/edit" Redigera
 
