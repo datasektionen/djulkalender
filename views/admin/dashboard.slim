@@ -9,7 +9,8 @@ dl
     table.table
       thead
         tr
-          th Fråga
+          th #
+          th Lucka
           th Antal svar
           th Hur många har svarat?
           th Korrekta svar
@@ -17,7 +18,9 @@ dl
       tbody
         - Question.published.all.each do |question|
           tr
-            td= question.title
+            td= question.id
+            td
+              a href="/admin/questions/#{question.id}"= question.title
             td= question.submissions.count
             td= question.submissions_dataset.select(:person_id).distinct.count
             td= question.correct_submissions.count
