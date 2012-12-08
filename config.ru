@@ -34,6 +34,10 @@ map "/" do
   run App::Main
 end
 
+map "/people" do
+  run App::People
+end
+
 map "/luckor" do
   run App::Questions
 end

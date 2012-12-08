@@ -1,10 +1,16 @@
 ul.nav
   - if env['warden'].authenticated?
+    li
+      a href="/" Luckor
+    li
+      a href="/people" Ranking
     li.dropdown id="user"
       a.dropdown-toggle data-toggle="dropdown" href="#"
         = @current_user
         b.caret
       ul.dropdown-menu
+        li
+          a href="/people/#{@current_user.username}" Profil
         li.logout
           a data-method="delete" href="/auth/logout" Logga ut
   - else

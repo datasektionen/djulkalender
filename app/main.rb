@@ -14,6 +14,15 @@ module App
       slim :start_page
     end
 
+    get "/profile" do
+      redirect to("/people/#{@current_user.username}")
+    end
+
+    get "/people/:username" do |username|
+      @person = Person.where(username: username).first
+      slim :"people/profile"
+    end
+
     get "/:id" do |id|
       @question = Question[id]
       status = QuestionStatus.new(@question, @current_user).status
@@ -30,6 +39,7 @@ module App
 
       slim :"questions/#{status}", locals: { error: "Fel svar!", hide_question_text: true }
     end
+
   end
 end
 

@@ -1,0 +1,16 @@
+h2 Ranking
+
+table.table
+  thead
+    tr
+      th Person
+      th Antal öppnade luckor
+      th Utslag (lägre är bättre)
+  tbody
+    - @people.each do |person|
+      tr
+        td
+          a href="/people/#{person[:username]}" #{person[:first_name]} #{person[:last_name]}
+        td= person[:correct_submissions]   || 0
+        td= person[:incorrect_submissions] || 0
+

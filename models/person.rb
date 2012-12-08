@@ -4,6 +4,7 @@ DB.create_table? :people do
   String :first_name, null: false
   String :last_name, null: false
   String :role, null: false, default: ""
+  String :username, null: false, default: ""
 end
 
 class Person < Sequel::Model

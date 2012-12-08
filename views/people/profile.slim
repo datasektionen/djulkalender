@@ -1,0 +1,9 @@
+.row-fluid
+  .span4
+    img src="http://www.csc.kth.se/hacks/new/xfinger/image.php?user=#{@person.username}" alt="xfinger"
+  .span4
+    dl
+      dt Namn
+      dd= @person.name
+      dt Antal klarade luckor
+      dd= @person.correct_submissions.count
