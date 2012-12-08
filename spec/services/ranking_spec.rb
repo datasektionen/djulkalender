@@ -56,4 +56,13 @@ describe Ranking do
     people.first[:id].must_equal p2.id
     people.to_a.last[:id].must_equal p1.id
   end
+
+  it "filters out admin users" do
+    p1.role = "admin"
+    p1.save
+
+    people = Ranking.new.rank_people
+    
+    assert_nil people.find {|p| p[:id] == p1.id }
+  end
 end

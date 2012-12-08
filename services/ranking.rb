@@ -13,6 +13,7 @@ class Ranking
          on cs.person_id = p.id
         left join #{incorrect_solutions} ic
          on ic.person_id = p.id
+       where role <> 'admin'
        order by correct_submissions desc, incorrect_submissions asc"
     )
   end
