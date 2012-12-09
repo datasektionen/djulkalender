@@ -62,6 +62,50 @@ describe "QuestionStatus" do
       end
     end
 
+    describe "older questions" do
+      let(:questions) { [
+        Fabricate(:question, publish_date: Date.today - 1),
+        Fabricate(:question, publish_date: Date.today - 2),
+        Fabricate(:question, publish_date: Date.today - 3),
+        Fabricate(:question, publish_date: Date.today - 4),
+        Fabricate(:question, publish_date: Date.today - 5)
+      ] }
+
+      let(:person) { Fabricate :person }
+
+      it "is available if older than 2 days (and unsolved)" do
+        old_questions = questions.select {|q| q.publish_date <= Date.today - 2 }
+        
+        old_questions.each do |q|
+          qs = QuestionStatus.new(q,person)
+
+          qs.status.must_equal "available"
+        end
+      end
+
+      it "is done if older than 2 days (and solved but not unlocked)" do
+        question = questions[-2]
+
+        sub = Fabricate :submission, question_id: question.id, answer: question.answer, person_id: person.id
+
+        qs = QuestionStatus.new(question, person)
+
+        qs.status.must_equal "done"
+      end
+
+      it "is available if the previous question is done" do
+        old_question = questions[-3]
+
+        sub = Fabricate :submission, question_id: old_question.id, answer: old_question.answer, person_id: person.id
+
+        question = Question[old_question.id + 1]
+
+        qs = QuestionStatus.new(question, person)
+
+        qs.status.must_equal "available"
+      end
+    end
+
     it "is done if it's the first question and the user has a correct answer" do
       cleanup
       q = Fabricate :question, publish_date: Date.today - 1

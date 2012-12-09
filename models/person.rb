@@ -43,10 +43,9 @@ class Person < Sequel::Model
   end
 
   def has_unlocked?(question)
-    previous_questions = Question.where("id < #{question.id}").map(&:id)
-    correct_answers = Submission.where(question_id: previous_questions).where(person_id: id).where(correct: true).map(&:question_id)
+    previous_question = Question[question.id - 1]
 
-    return correct_answers == previous_questions
+    return previous_question.nil? || question.old? || previous_question.correctly_answered_by?(self)
   end
 
   def admin?

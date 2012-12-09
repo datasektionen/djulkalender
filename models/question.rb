@@ -59,4 +59,8 @@ class Question < Sequel::Model
   def submissions_from_people_with_correct_submissions
     submissions_dataset.where(person_id: people_with_correct_submissions.map(&:id))
   end
+
+  def old?
+    publish_date <= today - 2
+  end
 end
