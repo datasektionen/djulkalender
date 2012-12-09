@@ -5,6 +5,7 @@ class Ranking
   def rank_people(limit = 50, offset = 0)
     fields = "id, first_name, last_name, username, correct_submissions, incorrect_submissions"
     correct_solutions   = "(select person_id, count(correct) as correct_submissions from submissions cs where correct = 't' group by person_id)"
+		latest_correct_solution = "(select person_id, answered_at from submissions cs where correct = 't' order by answered_at desc group by person_id)"
     incorrect_solutions = "(select person_id, count(correct) as incorrect_submissions from submissions cs where correct = 'f' group by person_id)"
     DB[:people].with_sql(
       "select #{fields} 
