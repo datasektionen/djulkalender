@@ -3,12 +3,14 @@ h2 Ranking
 table.table
   thead
     tr
+      th Rank
       th Person
       th Antal öppnade luckor
       th Utslag (lägre är bättre)
   tbody
-    - @people.each do |person|
+    - @people.each_with_index do |person, index|
       tr
+        td= index + 1
         td
           a href="/people/#{person[:username]}" #{person[:first_name]} #{person[:last_name]}
         td= person[:correct_submissions]   || 0
