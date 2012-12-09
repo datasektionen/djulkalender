@@ -57,6 +57,21 @@ describe Ranking do
     people.to_a.last[:id].must_equal p1.id
   end
 
+	it "ranks people with same correct solutions but earlier latest submission higher" do
+		s2_1 = Submission.create(person_id: p2.id, question_id: q1.id, answer: q1.answer, answered_at: Date.new(2012, 12, 1))
+		s2_2 = Submission.create(person_id: p2.id, question_id: q2.id, answer: q2.answer, answered_at: Date.new(2012, 12, 3))
+		s2_3 = Submission.create(person_id: p2.id, question_id: q2.id, answer: "wrong", answered_at: Date.new(2012, 12, 3))
+
+		s1_1 = Submission.create(person_id: p1.id, question_id: q1.id, answer: q1.answer, answered_at: Date.new(2012, 12, 2))
+		s1_2 = Submission.create(person_id: p1.id, question_id: q2.id, answer: q2.answer, answered_at: Date.new(2012, 12, 4))
+
+		people = Ranking.new.rank_people
+		
+		people.count.must_equal 2
+		people.first[:id].must_equal p2.id
+		people.to_a.last[:id].must_equal p1.id
+	end
+
   it "filters out admin users" do
     p1.role = "admin"
     p1.save
