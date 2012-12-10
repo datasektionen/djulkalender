@@ -3,7 +3,7 @@ require_relative '../unit_helper'
 describe Ranking do
   let(:p1) { Fabricate :person }
   let(:p2) { Fabricate :person }
-  let(:q1) { Fabricate :question }
+  let(:q1) { Fabricate :question, publish_date: Date.today - 1 }
   let(:q2) { Fabricate :question }
 
   before do 
@@ -58,8 +58,6 @@ describe Ranking do
   end
 
 	it "ranks people with correct solution on later question higher" do
-		q1.publish_date = Date.today - 1
-		q1.save
 		s2_1 = Submission.create(person_id: p2.id, question_id: q1.id, answer: q1.answer)
 
 		s1_1 = Submission.create(person_id: p1.id, question_id: q2.id, answer: q2.answer)
