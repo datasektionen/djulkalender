@@ -84,6 +84,16 @@ describe Ranking do
 		people.to_a.last[:id].must_equal p1.id
 	end
 
+	it "extracts correct submission as latest submission" do
+		s1_1 = Submission.create(person_id: p1.id, question_id: q1.id, answer: q1.answer)
+		s1_2 = Submission.create(person_id: p1.id, question_id: q2.id, answer: q2.answer)
+		s1_3 = Submission.create(person_id: p1.id, question_id: q1.id, answer: "oeuoeu")
+
+		people = Ranking.new.rank_people
+
+		people.first[:highest_correct].must_equal q2.publish_date
+	end
+
   it "filters out admin users" do
     p1.role = "admin"
     p1.save
