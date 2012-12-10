@@ -57,11 +57,12 @@ describe Ranking do
     people.to_a.last[:id].must_equal p1.id
   end
 
-	it "ranks people with fewer incorrect solutions higher" do
-		s2_1 = Submission.create(person_id: p2.id, question_id: q1.id, answer: q1.answer, answered_at: Date.new(2012, 12, 1))
-		s2_2 = Submission.create(person_id: p2.id, question_id: q2.id, answer: "wrong", answered_at: Date.new(2012, 12, 1))
+	it "ranks people with correct solution on later question higher" do
+		q1.publish_date = Date.today - 1
+		q1.save
+		s2_1 = Submission.create(person_id: p2.id, question_id: q1.id, answer: q1.answer)
 
-		s1_1 = Submission.create(person_id: p1.id, question_id: q1.id, answer: q1.answer, answered_at: Date.new(2012, 12, 1))
+		s1_1 = Submission.create(person_id: p1.id, question_id: q2.id, answer: q2.answer)
 
 		people = Ranking.new.rank_people
 		
