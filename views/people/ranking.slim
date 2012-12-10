@@ -6,7 +6,8 @@ table.table
       th Rank
       th Person
       th Antal öppnade luckor
-      th Utslag (lägre är bättre)
+      th Högsta öppnade lucka
+      th Senaste lucköppning
   tbody
     - @people.each_with_index do |person, index|
       tr
@@ -14,5 +15,6 @@ table.table
         td
           a href="/people/#{person[:username]}" #{person[:first_name]} #{person[:last_name]}
         td= person[:correct_submissions]   || 0
-        td= person[:incorrect_submissions] || 0
+        td= person[:highest_correct].day || 0
+        td= person[:latest_correct].strftime("%Y-%m-%d %H:%M")	 || '-'
 
