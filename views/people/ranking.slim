@@ -15,6 +15,6 @@ table.table
         td
           a href="/people/#{person[:username]}" #{person[:first_name]} #{person[:last_name]}
         td= person[:correct_submissions]   || 0
-        td= (person[:highest_correct] ? person[:highest_correct].day : '-' )
-        td= (person[:latest_correct] ? person[:latest_correct].strftime("%Y-%m-%d %H:%M")	: '-' )
+        td= question_number_from_date person[:highest_correct]
+        td= submission_timestamp person[:latest_correct]
 

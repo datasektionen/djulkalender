@@ -4,6 +4,16 @@ module App
 
     set :root, File.dirname(__FILE__) + "/.."
 
+    helpers do
+      def submission_timestamp(timestamp)
+        timestamp ? TZInfo::Timezone.get("Europe/Stockholm").utc_to_local(timestamp).strftime("%Y-%m-%d %H:%M") : "-"
+      end
+
+      def question_number_from_date(date)
+        date ? Date.parse(date).day : '-'
+      end
+    end
+
     before do
       env["warden"].authenticate!
       @current_user = env["warden"].user
