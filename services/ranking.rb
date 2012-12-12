@@ -16,6 +16,7 @@ class Ranking
 				 on hc.person_id = p.id
 				left join #{latest_correct_solution} ls
          on ls.person_id = p.id
+       where role <> 'admin'
        order by correct_submissions desc, highest_correct desc, latest_correct asc"
     )
   end
